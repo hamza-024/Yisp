@@ -52,16 +52,17 @@ To compile and run Yisp, use the following commands in your terminal:
    ./lisp
 ## Testing: All Sprints
 
-This section provides detailed explanations and test cases for each sprint. Each test showcases the functionality implemented during the respective sprint.
+This section provides detailed explanations and test cases for each sprint. Each test was run through the main file. Testing code can be found in tests directory. 
 
-## Sprint 1 Testing
+### Sprint 1 Tests
+---
 
-### **What is being tested:**
+#### **What is being tested:**
 - **Parsing symbols:** Verifies that individual symbols are parsed correctly.
 - **Parsing numbers:** Ensures that numeric literals are correctly handled.
 - **Parsing simple lists:** Checks the ability to read and interpret lists with mixed symbols and numbers.
 
-### **Tests and Explanations:**
+#### **Tests and Explanations:**
 
 1. **Test: Parse a single symbol**
    - **Input:** `x`
@@ -90,9 +91,6 @@ This section provides detailed explanations and test cases for each sprint. Each
      Test 3 - parse '(x 42)': (x 42) - PASS
      ```
 ### Sprint 2 Tests
-
-This section explains and evaluates the functionality tested in Sprint 2. Each test includes the input, explanation, expected output, the actual test run, and the result.
-
 ---
 
 #### **What is being tested in Sprint 2?**
@@ -104,7 +102,6 @@ This section explains and evaluates the functionality tested in Sprint 2. Each t
 6. **`nil?`:** Confirms if a value is `nil`.
 7. **`eq`:** Compares two expressions to determine equality.
 
----
 
 #### **Sprint 2 Test Results**
 
@@ -182,16 +179,12 @@ This section explains and evaluates the functionality tested in Sprint 2. Each t
      Test 8 - eq('x, 'y): nil - PASS
      ```
 ### Sprint 3 Tests
-
-This section explains and evaluates the functionality tested in Sprint 3. Each test includes the input, explanation, expected output, the actual test run, and the result.
-
 ---
 
 #### **What is being tested in Sprint 3?**
 1. **Arithmetic Operations:** Addition, subtraction, multiplication, division, and modulus (if implemented).
 2. **Comparison Operators:** Equality, less than, greater than, less than or equal to, greater than or equal to.
 
----
 
 #### **Sprint 3 Test Results**
 
@@ -285,10 +278,8 @@ This section explains and evaluates the functionality tested in Sprint 3. Each t
       Test 10 - mod(10, 3): 1 - PASS
       ```
 ### Sprint 4 Tests
-
-This section outlines the testing for Sprint 4 functionality. **Sprint 4 primarily focuses on the `eval` function**, which evaluates expressions in the environment. It also tests how `eval` interacts with other Lisp functions, such as `set`, `quote`, and arithmetic operations. Each test includes the input provided, its explanation, the expected output, the actual test run, and whether it passed or failed.
-
 ---
+
 
 #### **What is being tested in Sprint 4?**
 1. **Evaluate a number or symbol.**
@@ -298,7 +289,6 @@ This section outlines the testing for Sprint 4 functionality. **Sprint 4 primari
 5. **Perform arithmetic operations with evaluation.**
 6. **Nested evaluation using `eval`.**
 
----
 
 #### **Sprint 4 Test Results**
 
@@ -374,10 +364,7 @@ This section outlines the testing for Sprint 4 functionality. **Sprint 4 primari
      Test 8 - eval(quote(add 3 4)): 7 - PASS
      ```
 
-  ### Sprint 5 Tests
-
-Sprint 5 introduces short-circuiting logical functions (`and` and `or`) and conditional statements (`if` and `cond`). These functions ensure logical operations and conditional branching are executed efficiently, evaluating only as necessary. 
-
+### Sprint 5 Tests
 ---
 
 #### **What is being tested in Sprint 5?**
@@ -390,7 +377,6 @@ Sprint 5 introduces short-circuiting logical functions (`and` and `or`) and cond
 4. **Conditional branching with `cond`.**
    - Evaluate a series of condition-action pairs, executing the action corresponding to the first true condition.
 
----
 
 #### **Sprint 5 Test Results**
 
@@ -473,6 +459,110 @@ Sprint 5 introduces short-circuiting logical functions (`and` and `or`) and cond
    - **Test Run:**
      ```plaintext
      Test 9 - cond(nil -> 1, nil -> 2, nil -> 3): nil - PASS
-     ```
---- 
 
+### **Sprint 6 Tests**
+---
+
+#### **What is being tested in Sprint 6?**
+1. **Defining user-defined functions (`define`).**
+   - The ability to define reusable functions with custom arguments and body expressions.
+2. **Calling user-defined functions.**
+   - Verifies that functions are properly evaluated and return the expected results.
+3. **Nested function calls.**
+   - Tests the capability of evaluating functions that call other functions, ensuring proper argument handling and environment usage.
+4. **Functions with no arguments.**
+   - Ensures that functions without parameters can be defined and called correctly.
+5. **Variable shadowing within functions.**
+   - Tests whether arguments in a function correctly shadow global variables in the environment during execution.
+
+#### **Sprint 6 Test Results**
+
+1. **Test: Define and call a simple function**
+   - **Input:**
+     ```lisp
+     (define square (x) (mul x x))
+     (square 4)
+     ```
+   - **Explanation:** Defines a function `square` that takes one argument `x` and returns the result of multiplying `x` by itself. Then calls `square` with the argument `4`.
+   - **Expected Output:** `16`
+   - **Test Run:**
+     ```plaintext
+     Test 1 - square(4): 16 - PASS
+     ```
+
+2. **Test: Define and call a function with two arguments**
+   - **Input:**
+     ```lisp
+     (define add (a b) (add a b))
+     (add 5 10)
+     ```
+   - **Explanation:** Defines a function `add` that takes two arguments `a` and `b`, and returns their sum. Then calls `add` with the arguments `5` and `10`.
+   - **Expected Output:** `15`
+   - **Test Run:**
+     ```plaintext
+     Test 2 - add(5, 10): 15 - PASS
+     ```
+
+3. **Test: Nested function calls**
+   - **Input:**
+     ```lisp
+     (add (square 3) (square 4))
+     ```
+   - **Explanation:** Calls the previously defined `add` function with the results of two nested `square` calls: `square(3)` and `square(4)`.
+   - **Expected Output:** `25`
+   - **Test Run:**
+     ```plaintext
+     Test 3 - add(square(3), square(4)): 25 - PASS
+     ```
+
+4. **Test: Function with no arguments**
+   - **Input:**
+     ```lisp
+     (define const () 42)
+     (const)
+     ```
+   - **Explanation:** Defines a constant function `const` that takes no arguments and always returns `42`. Then calls `const`.
+   - **Expected Output:** `42`
+   - **Test Run:**
+     ```plaintext
+     Test 4 - const(): 42 - PASS
+     ```
+
+5. **Test: Recursive function for factorial**
+   - **Input:**
+     ```lisp
+     (define factorial (n) (if (eq n 0) 1 (mul n (factorial (sub n 1)))))
+     (factorial 5)
+     ```
+   - **Explanation:** Defines a recursive function `factorial` that calculates the factorial of a number `n`. Then calls `factorial` with the argument `5`.
+   - **Expected Output:** `120`
+   - **Test Run:**
+     ```plaintext
+     Test 5 - factorial(5): 120 - PASS
+     ```
+
+6. **Test: Combining functions with `max`**
+   - **Input:**
+     ```lisp
+     (define max (a b) (if (gt a b) a b))
+     (max (add 3 5) (mul 2 4))
+     ```
+   - **Explanation:** Defines a function `max` that returns the larger of two arguments. Combines `add` and `mul` functions as inputs to `max`.
+   - **Expected Output:** `8`
+   - **Test Run:**
+     ```plaintext
+     Test 6 - max(add(3, 5), mul(2, 4)): 8 - PASS
+     ```
+
+7. **Test: Shadowing in function definitions**
+   - **Input:** 
+     ```lisp
+     (define shadow_test (x) (set x 99) x)
+     (shadow_test 42)
+     ```
+   - **Explanation:** Verifies that the function handles shadowing by redefining a variable within its scope and correctly returning the updated value.
+   - **Expected Output:** `99`
+   - **Test Run:**
+     ```plaintext
+     Test 7 - shadow_test(42): 99 - PASS
+     ```
