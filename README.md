@@ -373,3 +373,106 @@ This section outlines the testing for Sprint 4 functionality. **Sprint 4 primari
      ```plaintext
      Test 8 - eval(quote(add 3 4)): 7 - PASS
      ```
+
+  ### Sprint 5 Tests
+
+Sprint 5 introduces short-circuiting logical functions (`and` and `or`) and conditional statements (`if` and `cond`). These functions ensure logical operations and conditional branching are executed efficiently, evaluating only as necessary. 
+
+---
+
+#### **What is being tested in Sprint 5?**
+1. **Short-circuiting logical AND (`and`).**
+   - Evaluate the first expression, and return `nil` if it’s false; otherwise, evaluate the second expression.
+2. **Short-circuiting logical OR (`or`).**
+   - Evaluate the first expression, and return its value if true; otherwise, evaluate the second expression.
+3. **Conditional branching with `if`.**
+   - Evaluate a condition and execute one of two branches based on the result.
+4. **Conditional branching with `cond`.**
+   - Evaluate a series of condition-action pairs, executing the action corresponding to the first true condition.
+
+---
+
+#### **Sprint 5 Test Results**
+
+1. **Test: Short-circuiting AND (`and t t`)**
+   - **Input:** `(and t t)`
+   - **Explanation:** Both expressions evaluate to true, so the result is `t`.
+   - **Expected Output:** `t`
+   - **Test Run:**
+     ```plaintext
+     Test 1 - and(t, t): t - PASS
+     ```
+
+2. **Test: Short-circuiting AND with `nil` (`and t nil`)**
+   - **Input:** `(and t nil)`
+   - **Explanation:** The first expression is true, but the second is false, so the result is `nil`.
+   - **Expected Output:** `nil`
+   - **Test Run:**
+     ```plaintext
+     Test 2 - and(t, nil): nil - PASS
+     ```
+
+3. **Test: Short-circuiting OR (`or t nil`)**
+   - **Input:** `(or t nil)`
+   - **Explanation:** The first expression is true, so the result is `t` without evaluating the second expression.
+   - **Expected Output:** `t`
+   - **Test Run:**
+     ```plaintext
+     Test 3 - or(t, nil): t - PASS
+     ```
+
+4. **Test: Short-circuiting OR with `nil` (`or nil nil`)**
+   - **Input:** `(or nil nil)`
+   - **Explanation:** Both expressions evaluate to false, so the result is `nil`.
+   - **Expected Output:** `nil`
+   - **Test Run:**
+     ```plaintext
+     Test 4 - or(nil, nil): nil - PASS
+     ```
+
+5. **Test: Conditional IF (true condition)**
+   - **Input:** `(if t 42 99)`
+   - **Explanation:** The condition evaluates to true, so the result is the first branch (`42`).
+   - **Expected Output:** `42`
+   - **Test Run:**
+     ```plaintext
+     Test 5 - if(t, 42, 99): 42 - PASS
+     ```
+
+6. **Test: Conditional IF (false condition)**
+   - **Input:** `(if nil 42 99)`
+   - **Explanation:** The condition evaluates to false, so the result is the second branch (`99`).
+   - **Expected Output:** `99`
+   - **Test Run:**
+     ```plaintext
+     Test 6 - if(nil, 42, 99): 99 - PASS
+     ```
+
+7. **Test: Conditional IF with no false branch**
+   - **Input:** `(if t 42)`
+   - **Explanation:** The condition evaluates to true, and there’s no false branch, so the result is `42`.
+   - **Expected Output:** `42`
+   - **Test Run:**
+     ```plaintext
+     Test 7 - if(t, 42): 42 - PASS
+     ```
+
+8. **Test: Conditional COND with a matching condition**
+   - **Input:** `(cond (nil 1) (t 2) (nil 3))`
+   - **Explanation:** The second condition (`t`) evaluates to true, so its associated action (`2`) is executed.
+   - **Expected Output:** `2`
+   - **Test Run:**
+     ```plaintext
+     Test 8 - cond(nil -> 1, t -> 2, nil -> 3): 2 - PASS
+     ```
+
+9. **Test: Conditional COND with no matching condition**
+   - **Input:** `(cond (nil 1) (nil 2) (nil 3))`
+   - **Explanation:** None of the conditions evaluate to true, so the result is `nil`.
+   - **Expected Output:** `nil`
+   - **Test Run:**
+     ```plaintext
+     Test 9 - cond(nil -> 1, nil -> 2, nil -> 3): nil - PASS
+     ```
+--- 
+
