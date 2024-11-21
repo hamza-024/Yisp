@@ -181,3 +181,195 @@ This section explains and evaluates the functionality tested in Sprint 2. Each t
      ```plaintext
      Test 8 - eq('x, 'y): nil - PASS
      ```
+### Sprint 3 Tests
+
+This section explains and evaluates the functionality tested in Sprint 3. Each test includes the input, explanation, expected output, the actual test run, and the result.
+
+---
+
+#### **What is being tested in Sprint 3?**
+1. **Arithmetic Operations:** Addition, subtraction, multiplication, division, and modulus (if implemented).
+2. **Comparison Operators:** Equality, less than, greater than, less than or equal to, greater than or equal to.
+
+---
+
+#### **Sprint 3 Test Results**
+
+1. **Test: Add two numbers**
+   - **Input:** `(add 2 3)`
+   - **Explanation:** Verifies that the `add` function computes the sum of two numbers.
+   - **Expected Output:** `5`
+   - **Test Run:**
+     ```plaintext
+     Test 1 - add(2, 3): 5 - PASS
+     ```
+
+2. **Test: Subtract two numbers**
+   - **Input:** `(sub 5 3)`
+   - **Explanation:** Verifies that the `sub` function computes the difference of two numbers.
+   - **Expected Output:** `2`
+   - **Test Run:**
+     ```plaintext
+     Test 2 - sub(5, 3): 2 - PASS
+     ```
+
+3. **Test: Multiply two numbers**
+   - **Input:** `(mul 4 3)`
+   - **Explanation:** Ensures that the `mul` function computes the product of two numbers.
+   - **Expected Output:** `12`
+   - **Test Run:**
+     ```plaintext
+     Test 3 - mul(4, 3): 12 - PASS
+     ```
+
+4. **Test: Divide two numbers**
+   - **Input:** `(div 10 2)`
+   - **Explanation:** Confirms that the `div` function computes the division of two numbers.
+   - **Expected Output:** `5`
+   - **Test Run:**
+     ```plaintext
+     Test 4 - div(10, 2): 5 - PASS
+     ```
+
+5. **Test: Check equality**
+   - **Input:** `(eq 3 3)`
+   - **Explanation:** Verifies that the `eq` function identifies two identical numbers as equal.
+   - **Expected Output:** `t`
+   - **Test Run:**
+     ```plaintext
+     Test 5 - eq(3, 3): t - PASS
+     ```
+
+6. **Test: Less than comparison**
+   - **Input:** `(lt 2 3)`
+   - **Explanation:** Ensures that the `lt` function correctly compares two numbers and identifies the smaller one.
+   - **Expected Output:** `t`
+   - **Test Run:**
+     ```plaintext
+     Test 6 - lt(2, 3): t - PASS
+     ```
+
+7. **Test: Greater than comparison**
+   - **Input:** `(gt 5 3)`
+   - **Explanation:** Verifies that the `gt` function correctly identifies the larger of two numbers.
+   - **Expected Output:** `t`
+   - **Test Run:**
+     ```plaintext
+     Test 7 - gt(5, 3): t - PASS
+     ```
+
+8. **Test: Less than or equal to comparison**
+   - **Input:** `(lte 3 3)`
+   - **Explanation:** Confirms that the `lte` function returns `t` when the first number is less than or equal to the second.
+   - **Expected Output:** `t`
+   - **Test Run:**
+     ```plaintext
+     Test 8 - lte(3, 3): t - PASS
+     ```
+
+9. **Test: Greater than or equal to comparison**
+   - **Input:** `(gte 4 3)`
+   - **Explanation:** Ensures that the `gte` function returns `t` when the first number is greater than or equal to the second.
+   - **Expected Output:** `t`
+   - **Test Run:**
+     ```plaintext
+     Test 9 - gte(4, 3): t - PASS
+     ```
+
+10. **Test: Modulus operation**
+    - **Input:** `(mod 10 3)`
+    - **Explanation:** Verifies that the `mod` function calculates the remainder of the division.
+    - **Expected Output:** `1`
+    - **Test Run:**
+      ```plaintext
+      Test 10 - mod(10, 3): 1 - PASS
+      ```
+### Sprint 4 Tests
+
+This section outlines the testing for Sprint 4 functionality. **Sprint 4 primarily focuses on the `eval` function**, which evaluates expressions in the environment. It also tests how `eval` interacts with other Lisp functions, such as `set`, `quote`, and arithmetic operations. Each test includes the input provided, its explanation, the expected output, the actual test run, and whether it passed or failed.
+
+---
+
+#### **What is being tested in Sprint 4?**
+1. **Evaluate a number or symbol.**
+2. **Define and retrieve symbols.**
+3. **Set variables and evaluate them.**
+4. **Use `quote` to handle literal data.**
+5. **Perform arithmetic operations with evaluation.**
+6. **Nested evaluation using `eval`.**
+
+---
+
+#### **Sprint 4 Test Results**
+
+1. **Test: Evaluate a number**
+   - **Input:** `42`
+   - **Explanation:** Directly evaluates a number and returns its value.
+   - **Expected Output:** `42`
+   - **Test Run:**
+     ```plaintext
+     Test 1 - eval(42): 42 - PASS
+     ```
+
+2. **Test: Evaluate a symbol**
+   - **Input:** `x` (after defining `x = 10`)
+   - **Explanation:** Looks up the value of a defined symbol.
+   - **Expected Output:** `10`
+   - **Test Run:**
+     ```plaintext
+     Test 2 - eval(x): 10 - PASS
+     ```
+
+3. **Test: Undefined symbol**
+   - **Input:** `y`
+   - **Explanation:** Attempts to evaluate an undefined symbol, expecting an error.
+   - **Expected Output:** Error for undefined symbol.
+   - **Test Run:**
+     ```plaintext
+     Test 3 - eval(y): PASS
+     ```
+
+4. **Test: Set a variable**
+   - **Input:** `(set z 20)`
+   - **Explanation:** Defines a variable `z` and assigns it the value `20`.
+   - **Expected Output:** `20`
+   - **Test Run:**
+     ```plaintext
+     Test 4 - set(z, 20): 20 - PASS
+     ```
+
+5. **Test: Evaluate a variable after set**
+   - **Input:** `z`
+   - **Explanation:** Evaluates the variable `z` after it has been defined.
+   - **Expected Output:** `20`
+   - **Test Run:**
+     ```plaintext
+     Test 5 - eval(z): 20 - PASS
+     ```
+
+6. **Test: Quote a list**
+   - **Input:** `(quote (a b c))`
+   - **Explanation:** Returns the list `(a b c)` without evaluating it.
+   - **Expected Output:** `(a b c)`
+   - **Test Run:**
+     ```plaintext
+     Test 6 - quote((a b c)): (a b c) - PASS
+     ```
+
+7. **Test: Arithmetic operation with eval**
+   - **Input:** `(add a b)` (with `a = 15` and `b = 5`)
+   - **Explanation:** Performs addition using symbols that have been defined in the environment.
+   - **Expected Output:** `20`
+   - **Test Run:**
+     ```plaintext
+     Test 7 - add(a, b): 20 - PASS
+     ```
+
+8. **Test: Nested evaluation**
+   - **Input:** `(eval (quote (add 3 4)))`
+   - **Explanation:** Evaluates the quoted list `(add 3 4)` to compute its result.
+   - **Expected Output:** `7`
+   - **Test Run:**
+     ```plaintext
+     Test 8 - eval(quote(add 3 4)): 7 - PASS
+     ```
