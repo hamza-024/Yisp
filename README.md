@@ -50,3 +50,42 @@ To compile and run Yisp, use the following commands in your terminal:
 2. **Run the Interpreter:**
    ```bash
    ./lisp
+## Testing: All Sprints
+
+This section provides detailed explanations and test cases for each sprint. Each test showcases the functionality implemented during the respective sprint.
+
+## Sprint 1 Testing
+
+### **What is being tested:**
+- **Parsing symbols:** Verifies that individual symbols are parsed correctly.
+- **Parsing numbers:** Ensures that numeric literals are correctly handled.
+- **Parsing simple lists:** Checks the ability to read and interpret lists with mixed symbols and numbers.
+
+### **Tests and Explanations:**
+
+1. **Test: Parse a single symbol**
+   - **Input:** `x`
+   - **Explanation:** Parses the symbol `x` and ensures it is correctly represented as a symbol.
+   - **Expected Output:** `x`
+   - **Test Run:**
+     ```lisp
+     Test 1 - parse 'x': x - PASS
+     ```
+
+2. **Test: Parse a number**
+   - **Input:** `42`
+   - **Explanation:** Parses the numeric literal `42` and ensures it is correctly identified as a number.
+   - **Expected Output:** `42`
+   - **Test Run:**
+     ```lisp
+     Test 2 - parse '42': 42 - PASS
+     ```
+
+3. **Test: Parse a simple list**
+   - **Input:** `(x 42)`
+   - **Explanation:** Parses a list containing a symbol and a number, ensuring the list structure is maintained.
+   - **Expected Output:** `(x 42)`
+   - **Test Run:**
+     ```lisp
+     Test 3 - parse '(x 42)': (x 42) - PASS
+     ```
