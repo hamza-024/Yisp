@@ -89,3 +89,95 @@ This section provides detailed explanations and test cases for each sprint. Each
      ```lisp
      Test 3 - parse '(x 42)': (x 42) - PASS
      ```
+### Sprint 2 Tests
+
+This section explains and evaluates the functionality tested in Sprint 2. Each test includes the input, explanation, expected output, the actual test run, and the result.
+
+---
+
+#### **What is being tested in Sprint 2?**
+1. **`nil`:** Tests that the interpreter correctly recognizes and evaluates `nil`.
+2. **`truth (t)`:** Ensures the interpreter recognizes `t` as a true value.
+3. **`symbol?`:** Checks whether an expression is a symbol.
+4. **`number?`:** Validates whether an expression is numeric.
+5. **`cons`:** Constructs a list using `cons` and ensures it evaluates properly.
+6. **`nil?`:** Confirms if a value is `nil`.
+7. **`eq`:** Compares two expressions to determine equality.
+
+---
+
+#### **Sprint 2 Test Results**
+
+1. **Test: Recognizing `nil`**
+   - **Input:** `nil`
+   - **Explanation:** Verifies that `nil` is properly recognized as the Lisp equivalent of "null" or an empty value.
+   - **Expected Output:** `nil`
+   - **Test Run:** 
+     ```plaintext
+     Test 1 - nil: nil - PASS
+     ```
+
+2. **Test: Recognizing `truth (t)`**
+   - **Input:** `t`
+   - **Explanation:** Ensures the interpreter recognizes `t` as a true value in the Lisp environment.
+   - **Expected Output:** `t`
+   - **Test Run:**
+     ```plaintext
+     Test 2 - truth (t): t - PASS
+     ```
+
+3. **Test: Checking `symbol?`**
+   - **Input:** `(symbol? "symbol")`
+   - **Explanation:** Checks whether the provided expression is a symbol and returns `t` if true.
+   - **Expected Output:** `t`
+   - **Test Run:**
+     ```plaintext
+     Test 3 failed: Symbol not found: symbol
+     ```
+   - **Result:** `FAIL`
+   - **Explanation:** The interpreter could not evaluate the `symbol?` function, likely due to a missing or incorrect implementation.
+
+4. **Test: Checking `number?`**
+   - **Input:** `(number? "411")`
+   - **Explanation:** Confirms whether the provided expression is numeric.
+   - **Expected Output:** `t`
+   - **Test Run:**
+     ```plaintext
+     Test 4 - number?("411"): t - PASS
+     ```
+
+5. **Test: Constructing a list with `cons`**
+   - **Input:** `(cons 'one (cons 'two (cons 'three nil)))`
+   - **Explanation:** Verifies that the `cons` function correctly constructs a list from the provided elements.
+   - **Expected Output:** `(one two three)`
+   - **Test Run:**
+     ```plaintext
+     Test 5 - cons('one, cons('two, cons('three, nil))): (one two three) - PASS
+     ```
+
+6. **Test: Checking `nil?`**
+   - **Input:** `(nil? nil)`
+   - **Explanation:** Ensures that the `nil?` function correctly identifies `nil` values.
+   - **Expected Output:** `t`
+   - **Test Run:**
+     ```plaintext
+     Test 6 - nil?(nil): t - PASS
+     ```
+
+7. **Test: Comparing equality with `eq` (same objects)**
+   - **Input:** `(eq 'x 'x)`
+   - **Explanation:** Verifies that `eq` correctly identifies two identical objects.
+   - **Expected Output:** `t`
+   - **Test Run:**
+     ```plaintext
+     Test 7 - eq('x, 'x): t - PASS
+     ```
+
+8. **Test: Comparing equality with `eq` (different objects)**
+   - **Input:** `(eq 'x 'y)`
+   - **Explanation:** Verifies that `eq` identifies two different objects as not equal.
+   - **Expected Output:** `nil`
+   - **Test Run:**
+     ```plaintext
+     Test 8 - eq('x, 'y): nil - PASS
+     ```
