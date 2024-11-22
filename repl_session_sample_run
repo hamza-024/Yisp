@@ -1,0 +1,108 @@
+lisp> ;; Sprint 1 Tests
+lisp> x
+Error: Symbol not found: x
+lisp> 42
+42
+lisp> ("test")
+"test"
+
+lisp> ;; Sprint 2 Tests
+lisp> nil
+nil
+lisp> t
+t
+lisp> (symbol? "example")
+t
+lisp> (number? 123)
+t
+lisp> (cons 'one (cons 'two (cons 'three nil)))
+(one two three)
+lisp> (nil? nil)
+t
+lisp> (eq 'a 'a)
+t
+lisp> (eq 'a 'b)
+nil
+
+lisp> ;; Sprint 3 Tests
+lisp> (add 10 20)
+30
+lisp> (sub 100 50)
+50
+lisp> (mul 6 7)
+42
+lisp> (div 21 3)
+7
+lisp> (mod 10 3)
+1
+lisp> (lt 5 10)
+t
+lisp> (gt 10 5)
+t
+lisp> (lte 5 5)
+t
+lisp> (gte 8 8)
+t
+
+lisp> ;; Sprint 4 Tests
+lisp> (set myvar 42)
+42
+lisp> myvar
+42
+lisp> (quote (a b c))
+(a b c)
+lisp> (add myvar 8)
+50
+lisp> (eval (quote (add 2 3)))
+5
+
+lisp> ;; Sprint 5 Tests
+lisp> (and t t)
+t
+lisp> (and t nil)
+nil
+lisp> (or nil t)
+t
+lisp> (or nil nil)
+nil
+lisp> (if t 42 99)
+42
+lisp> (if nil 42 99)
+99
+lisp> (cond (nil 1) (t 2) (nil 3))
+2
+
+lisp> ;; Sprint 6 Tests
+lisp> (define square (x) (mul x x))
+square
+lisp> (square 5)
+25
+lisp> (define max (a b) (if (gt a b) a b))
+max
+lisp> (max 10 20)
+20
+lisp> (define add_square (x y) (add (square x) (square y)))
+add_square
+lisp> (add_square 3 4)
+25
+lisp> (define factorial (n) (if (lte n 1) 1 (mul n (factorial (sub n 1)))))
+factorial
+lisp> (factorial 5)
+120
+
+lisp> ;; Additional Tests
+lisp> (define constant () 100)
+constant
+lisp> (constant)
+100
+lisp> (symbol? 'myvar)
+t
+lisp> (number? "not_a_number")
+nil
+lisp> (list? (quote (1 2 3)))
+t
+lisp> (car (quote (a b c)))
+a
+lisp> (cdr (quote (a b c)))
+(b c)
+lisp>
